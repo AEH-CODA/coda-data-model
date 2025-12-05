@@ -448,7 +448,7 @@
           }
           if (d.type === "group" && d.class_label) {
             htmlParts.push(
-              "<br/><span>Block class: " + escapeHtml(d.class_label) + "</span>"
+              "<br/><span>Concept class: " + escapeHtml(d.class_label) + "</span>"
             );
           }
           if (d.type === "class") {
@@ -537,7 +537,7 @@
         const nClasses = nodes.filter((n) => n.type === "class").length;
 
         summaryEl.innerHTML =
-          "<span class='badge'>Blocks: " +
+          "<span class='badge'>Concept Classes: " +
           nGroups +
           "</span>" +
           "<span class='badge'>Variables: " +
@@ -548,7 +548,7 @@
           "</span>" +
           "<br/><span class='muted'>" +
           links.length +
-          " edges linking the patient to blocks, and blocks to variables and ontology classes.</span>";
+          " edges linking the patient to concept class, and concept class to variables and ontology classes.</span>";
 
         renderGraph(nodes, links, patientId);
       })

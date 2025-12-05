@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CODA Data Knowledge Graph</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- D3.js from CDN -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #111827;
+      background: #f3f4f6;
+    }
+
+    header {
+      padding: 0.6rem 1.2rem;
+      background: #0f766e;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    header .subtitle {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    header nav a {
+      color: #ecfeff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      margin-left: 1rem;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+    }
+
+    #sidebar {
+      width: 260px;
+      min-width: 220px;
+      max-width: 320px;
+      border-right: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    #graph-container {
+      flex: 1;
+      position: relative;
+    }
+
+    #graph {
+      width: 100%;
+      height: 100%;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.75rem 0.9rem;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+      font-size: 0.85rem;
+    }
+
+    .card h2 {
+      margin: 0 0 0.4rem 0;
+      font-size: 0.95rem;
+    }
+
+    .muted {
+      color: #6b7280;
+      font-size: 0.8rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      margin-right: 0.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.3rem;
+      font-size: 0.8rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      margin-right: 0.4rem;
+    }
+
+    .controls label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .controls input[type="range"] {
+      width: 100%;
+    }
+
+    #tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: #111827;
+      color: white;
+      padding: 0.35rem 0.5rem;
+      border-radius: 0.35rem;
+      font-size: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.1s ease-out;
+      max-width: 240px;
+      z-index: 10;
+    }
+
+    svg {
+      background: #f9fafb;
+    }
+
+    .link {
+      stroke: #d1d5db;
+      stroke-width: 1;
+      opacity: 0.7;
+    }
+
+    .node {
+      stroke: #ffffff;
+      stroke-width: 1;
+      cursor: grab;
+    }
+
+    .node:active {
+      cursor: grabbing;
+    }
+
+    .node-label {
+      font-size: 0.7rem;
+      pointer-events: none;
+      fill: #374151;
+    }
+
+    @media (max-width: 800px) {
+      main {
+        flex-direction: column;
+      }
+      #sidebar {
+        width: 100%;
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>CODA Data Knowledge Graph</h1>
+      <div class="subtitle">
+        Patient-centred view of CODA data blocks and ontology classes
+      </div>
+    </div>
+    <nav>
+      <a href="./">Semantic map table</a>
+      <a href="./graph.html"><strong>Knowledge graph</strong></a>
+    </nav>
+  </header>
+
+  <main>
+    <aside id="sidebar">
+      <div class="card">
+        <h2>About this graph</h2>
+        <p class="muted">
+          The patient is at the centre. Around it you see data
+          concepts like Birth History, Systemic History, Ocular
+          History and Social History, and their mapped variables and
+          ontology classes.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Legend</h2>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#dc2626;"></div>
+          <span>Patient</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#0f766e;"></div>
+          <span>Data block / section</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#1d4ed8;"></div>
+          <span>Variable</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#9333ea;"></div>
+          <span>Ontology class (ncit:…)</span>
+        </div>
+      </div>
+
+      <div class="card controls">
+        <h2>Layout</h2>
+        <label>
+          Repulsion
+          <input id="chargeRange" type="range" min="-400" max="-50" step="10" value="-200" />
+        </label>
+      </div>
+
+      <div class="card">
+        <h2>Summary</h2>
+        <div class="muted" id="summary-text">
+          Loading…
+        </div>
+      </div>
+    </aside>
+
+    <section id="graph-container">
+      <div id="graph"></div>
+      <div id="tooltip"></div>
+    </section>
+  </main>
+
+  <script>
+    const tooltip = document.getElementById("tooltip");
+    const summaryEl = document.getElementById("summary-text");
+    const chargeRange = document.getElementById("chargeRange");
+
+    const width = window.innerWidth - 260;
+    const height = window.innerHeight - 70;
+
+    const svg = d3
+      .select("#graph")
+      .append("svg")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("viewBox", `0 0 ${width} ${height}`);
+
+    const linkLayer = svg.append("g");
+    const nodeLayer = svg.append("g");
+    const labelLayer = svg.append("g");
+
+    function nodeColor(d) {
+      if (d.type === "central") return "#dc2626";     // Patient
+      if (d.type === "group") return "#0f766e";       // Block / section
+      if (d.type === "variable") return "#1d4ed8";    // Variable
+      if (d.type === "class") return "#9333ea";       // Ontology class
+      return "#6b7280";
+    }
+
+    function nodeRadius(d) {
+      if (d.type === "central") return 22;
+      if (d.type === "group") return 14;
+      if (d.type === "class") return 8;
+      return 6;
+    }
+
+    function escapeHtml(str) {
+      if (str == null) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function showTooltip(html, x, y) {
+      tooltip.innerHTML = html;
+      tooltip.style.left = x + 10 + "px";
+      tooltip.style.top = y + 10 + "px";
+      tooltip.style.opacity = 0.95;
+    }
+
+    function hideTooltip() {
+      tooltip.style.opacity = 0;
+    }
+
+    // Build graph: central patient -> blocks -> variables -> classes
+    function buildGraphFromSemanticMap(data) {
+      const variableInfo = data.variable_info || {};
+      const nodesMap = new Map();
+      const links = [];
+
+      function ensureNode(id, type, label, extra = {}) {
+        if (!nodesMap.has(id)) {
+          nodesMap.set(id, { id, type, label, ...extra });
+        }
+        return nodesMap.get(id);
+      }
+
+      // Central patient node
+      const patientId = "patient:central";
+      ensureNode(patientId, "central", "Patient");
+
+      for (const [varName, v] of Object.entries(variableInfo)) {
+        const sr = v.schema_reconstruction || [];
+        const groupLabel = (sr[0] && sr[0].aesthetic_label) || "Other";
+        const groupClassLabel = (sr[0] && sr[0].class_label) || null;
+
+        // Group node for section (Birth History, Systemic History, etc.)
+        const groupId = "group:" + groupLabel;
+        ensureNode(groupId, "group", groupLabel, {
+          class_label: groupClassLabel,
+        });
+
+        // Variable node
+        ensureNode(varName, "variable", varName, {
+          local_definition: v.local_definition || "",
+        });
+
+        // Patient -> Group link (only add once per pair logically, but duplicates don't harm)
+        links.push({
+          source: patientId,
+          target: groupId,
+          relation: "has_block",
+        });
+
+        // Group -> Variable link
+        links.push({
+          source: groupId,
+          target: varName,
+          relation: "has_variable",
+        });
+
+        // Variable -> Ontology class link
+        if (v.class) {
+          const classId = "class:" + v.class;
+          ensureNode(classId, "class", v.class);
+          links.push({
+            source: varName,
+            target: classId,
+            relation: "has_class",
+          });
+        }
+      }
+
+      const nodes = Array.from(nodesMap.values());
+      return { nodes, links, patientId };
+    }
+
+    function renderGraph(nodes, links, patientId) {
+      const chargeStrength = +chargeRange.value;
+
+      const simulation = d3
+        .forceSimulation(nodes)
+        .force(
+          "link",
+          d3
+            .forceLink(links)
+            .id((d) => d.id)
+            .distance((d) => {
+              // Patient to group: longer radius
+              if (
+                (d.source.id === patientId && d.target.type === "group") ||
+                (d.target.id === patientId && d.source.type === "group")
+              ) {
+                return 160;
+              }
+              // group to variable: medium
+              if (
+                (d.source.type === "group" && d.target.type === "variable") ||
+                (d.target.type === "group" && d.source.type === "variable")
+              ) {
+                return 100;
+              }
+              // variable to class: shorter
+              return 70;
+            })
+        )
+        .force("charge", d3.forceManyBody().strength(chargeStrength))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius((d) => nodeRadius(d) + 5));
+
+      // fix patient in the center
+      const patientNode = nodes.find((n) => n.id === patientId);
+      if (patientNode) {
+        patientNode.fx = width / 2;
+        patientNode.fy = height / 2;
+      }
+
+      const link = linkLayer
+        .selectAll("line")
+        .data(links)
+        .enter()
+        .append("line")
+        .attr("class", "link");
+
+      const node = nodeLayer
+        .selectAll("circle")
+        .data(nodes)
+        .enter()
+        .append("circle")
+        .attr("class", "node")
+        .attr("r", nodeRadius)
+        .attr("fill", nodeColor)
+        .call(
+          d3
+            .drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended)
+        )
+        .on("mousemove", (event, d) => {
+          const htmlParts = [];
+          if (d.type === "central") {
+            htmlParts.push("<strong>Patient</strong>");
+            htmlParts.push("<br/><span>Central node representing the individual.</span>");
+          } else {
+            htmlParts.push("<strong>" + escapeHtml(d.label) + "</strong>");
+          }
+
+          if (d.type === "variable" && d.local_definition) {
+            htmlParts.push("<br/><span>" + escapeHtml(d.local_definition) + "</span>");
+          }
+          if (d.type === "group" && d.class_label) {
+            htmlParts.push(
+              "<br/><span>Block class: " + escapeHtml(d.class_label) + "</span>"
+            );
+          }
+          if (d.type === "class") {
+            htmlParts.push("<br/><span>Ontology class</span>");
+          }
+
+          showTooltip(htmlParts.join(""), event.pageX, event.pageY);
+        })
+        .on("mouseout", () => {
+          hideTooltip();
+        });
+
+      const labels = labelLayer
+        .selectAll("text")
+        .data(nodes.filter((d) => d.type !== "class"))
+        .enter()
+        .append("text")
+        .attr("class", "node-label")
+        .text((d) => (d.type === "central" ? "Patient" : d.label))
+        .attr("text-anchor", "middle")
+        .attr("dy", (d) => {
+          if (d.type === "central") return -26;
+          if (d.type === "group") return -18;
+          return -10;
+        });
+
+      simulation.on("tick", () => {
+        link
+          .attr("x1", (d) => d.source.x)
+          .attr("y1", (d) => d.source.y)
+          .attr("x2", (d) => d.target.x)
+          .attr("y2", (d) => d.target.y);
+
+        node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+
+        labels.attr("x", (d) => d.x).attr("y", (d) => d.y);
+      });
+
+      function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        // don't allow dragging the patient off centre
+        if (d.id === patientId) return;
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+
+      function dragged(event, d) {
+        if (d.id === patientId) return;
+        d.fx = event.x;
+        d.fy = event.y;
+      }
+
+      function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        if (d.id === patientId) {
+          // keep patient fixed in the centre
+          d.fx = width / 2;
+          d.fy = height / 2;
+        } else {
+          d.fx = null;
+          d.fy = null;
+        }
+      }
+
+      // Update charge strength when slider changes
+      chargeRange.addEventListener("input", () => {
+        simulation.force(
+          "charge",
+          d3.forceManyBody().strength(+chargeRange.value)
+        );
+        simulation.alpha(0.5).restart();
+      });
+    }
+
+    // Load JSON and build graph
+    fetch("data_semantic_map.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then((data) => {
+        const { nodes, links, patientId } = buildGraphFromSemanticMap(data);
+
+        const nGroups = nodes.filter((n) => n.type === "group").length;
+        const nVars = nodes.filter((n) => n.type === "variable").length;
+        const nClasses = nodes.filter((n) => n.type === "class").length;
+
+        summaryEl.innerHTML =
+          "<span class='badge'>Blocks: " +
+          nGroups +
+          "</span>" +
+          "<span class='badge'>Variables: " +
+          nVars +
+          "</span>" +
+          "<span class='badge'>Ontology classes: " +
+          nClasses +
+          "</span>" +
+          "<br/><span class='muted'>" +
+          links.length +
+          " edges linking the patient to blocks, and blocks to variables and ontology classes.</span>";
+
+        renderGraph(nodes, links, patientId);
+      })
+      .catch((err) => {
+        console.error(err);
+        summaryEl.textContent =
+          "Failed to load data_semantic_map.json: " + err.message;
+      });
+  </script>
+</body>
+</html>

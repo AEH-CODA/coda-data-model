@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CODA Data Knowledge Graph</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, sans-serif; }
+    body { margin: 0; height: 100vh; display: flex; flex-direction: column; background: #f3f4f6; }
+    header { padding: 0.6rem 1.2rem; background: #0f766e; color: white; display: flex; justify-content: space-between; }
+    main { flex: 1; display: flex; overflow: hidden; }
+    #sidebar { width: 260px; background: white; padding: 0.75rem; border-right: 1px solid #e5e7eb; overflow-y: auto; }
+    #graph-container { flex: 1; position: relative; }
+    #tooltip { position: absolute; background: #111827; color: white; padding: 0.35rem 0.5rem; opacity: 0; pointer-events: none; border-radius: 0.3rem; font-size: 0.75rem; }
+    svg { background: #f9fafb; }
+    .node { stroke: white; stroke-width: 1; cursor: grab; }
+    .node-label { font-size: 0.7rem; pointer-events: none; fill: #374151; }
+    .link { stroke: #d1d5db; stroke-width: 1; opacity: 0.7; }
+  </style>
+</head>
+
+<body>
+<header>
+  <div>
+    <h1 style="margin:0;font-size:1.1rem;">CODA Data Knowledge Graph</h1>
+    <div style="font-size:0.8rem;">Patient-centered 3-level Concept Class hierarchy</div>
+  </div>
+  <nav>
+    <a href="./" style="color:white;margin-left:1rem;">Semantic map</a>
+    <a href="./graph.html" style="color:white;margin-left:1rem;"><b>Knowledge graph</b></a>
+  </nav>
+</header>
+
+<main>
+  <aside id="sidebar">
+    <h2>About</h2>
+    <p style="font-size:0.85rem;color:#444;">
+      CODA Knowledge Graph centered around the patient.  
+      Nodes radiate outward in 3 levels:
+      <br> 1) Level 1 Concept Class  
+      <br> 2) Level 2 Concept Subclass  
+      <br> 3) Variables
+    </p>
+
+    <h2>Legend</h2>
+    <p><span style="color:#dc2626;">●</span> Patient</p>
+    <p><span style="color:#0f766e;">●</span> Level 1 Concept Class</p>
+    <p><span style="color:#1d4ed8;">●</span> Level 2 Concept Subclass</p>
+    <p><span style="color:#9333ea;">●</span> Variable</p>
+
+    <h2>Stats</h2>
+    <div id="summary-text" style="font-size:0.8rem;color:#555;">Loading…</div>
+  </aside>
+
+  <section id="graph-container">
+    <div id="tooltip"></div>
+    <svg id="graph"></svg>
+  </section>
+</main>
+
+<script>
+const tooltip=document.getElementById("tooltip");
+function showTip(html,x,y){ tooltip.innerHTML=html; tooltip.style.left=x+10+"px"; tooltip.style.top=y+10+"px"; tooltip.style.opacity=0.95; }
+function hideTip(){ tooltip.style.opacity=0; }
+
+function color(d){
+  if(d.type==="patient") return "#dc2626";
+  if(d.type==="lvl1") return "#0f766e";
+  if(d.type==="lvl2") return "#1d4ed8";
+  if(d.type==="variable") return "#9333ea";
+  return "#888";
+}
+
+function radius(d){
+  if(d.type==="patient") return 22;
+  if(d.type==="lvl1") return 14;
+  if(d.type==="lvl2") return 10;
+  if(d.type==="variable") return 6;
+  return 5;
+}
+
+function build(data){
+  const nodesMap=new Map();
+  const links=[];
+
+  function ensure(id, type, label){
+    if(!nodesMap.has(id)){
+      nodesMap.set(id,{id, type, label});
+    }
+    return nodesMap.get(id);
+  }
+
+  const patient=ensure("patient","patient","patient");
+
+  for(const [varName,info] of Object.entries(data.variable_info)){
+    const sr=info.schema_reconstruction || [];
+    if(sr.length<3) continue;  // must have 3 levels
+
+    const lvl1=sr[1].class_label;
+    const lvl2=sr[2].class_label;
+
+    const nodeLvl1=ensure("lvl1:"+lvl1,"lvl1",lvl1);
+    const nodeLvl2=ensure("lvl2:"+lvl2,"lvl2",lvl2);
+    const variable=ensure("var:"+varName,"variable",varName);
+
+    // patient → lvl1
+    links.push({source:"patient",target:"lvl1:"+lvl1});
+    // lvl1 → lvl2
+    links.push({source:"lvl1:"+lvl1,target:"lvl2:"+lvl2});
+    // lvl2 → variable
+    links.push({source:"lvl2:"+lvl2,target:"var:"+varName});
+  }
+
+  return {nodes:[...nodesMap.values()], links};
+}
+
+function render(graph){
+  const svg=d3.select("#graph");
+  const width=window.innerWidth-260, height=window.innerHeight-70;
+
+  svg.attr("width",width).attr("height",height);
+
+  const link=svg.append("g").selectAll("line")
+      .data(graph.links).enter().append("line").attr("class","link");
+
+  const node=svg.append("g").selectAll("circle")
+      .data(graph.nodes).enter().append("circle")
+      .attr("class","node")
+      .attr("r",radius)
+      .attr("fill",color)
+      .call(d3.drag()
+          .on("start",dragStart)
+          .on("drag",drag)
+          .on("end",dragEnd))
+      .on("mousemove",(e,d)=>showTip("<b>"+d.label+"</b>",e.pageX,e.pageY))
+      .on("mouseout",()=>hideTip());
+
+  const label=svg.append("g").selectAll("text")
+      .data(graph.nodes.filter(n=>n.type!=="variable"))
+      .enter().append("text")
+      .text(d=>d.label)
+      .attr("class","node-label")
+      .attr("text-anchor","middle")
+      .attr("dy",-12);
+
+  // Fix patient position
+  const patient=graph.nodes.find(n=>n.type==="patient");
+  patient.fx=width/2;
+  patient.fy=height/2;
+
+  const sim=d3.forceSimulation(graph.nodes)
+      .force("link",d3.forceLink(graph.links).id(d=>d.id).distance(d=>{
+         if(d.source.type==="patient") return 180;
+         if(d.source.type==="lvl1") return 140;
+         if(d.source.type==="lvl2") return 100;
+         return 60;
+      }))
+      .force("charge",d3.forceManyBody().strength(-260))
+      .force("center",d3.forceCenter(width/2,height/2))
+      .force("collision",d3.forceCollide().radius(d=>radius(d)+4))
+      .on("tick",()=>{
+        link.attr("x1",d=>d.source.x)
+            .attr("y1",d=>d.source.y)
+            .attr("x2",d=>d.target.x)
+            .attr("y2",d=>d.target.y);
+
+        node.attr("cx",d=>d.x).attr("cy",d=>d.y);
+        label.attr("x",d=>d.x).attr("y",d=>d.y-14);
+      });
+
+  function dragStart(e,d){
+    if(!e.active) sim.alphaTarget(0.3).restart();
+    if(d.type==="patient") return; // keep in center
+    d.fx=d.x; d.fy=d.y;
+  }
+  function drag(e,d){ if(d.type!=="patient"){ d.fx=e.x; d.fy=e.y; } }
+  function dragEnd(e,d){
+    if(!e.active) sim.alphaTarget(0);
+    if(d.type==="patient"){ d.fx=width/2; d.fy=height/2; }
+    else { d.fx=null; d.fy=null; }
+  }
+}
+
+fetch("data_semantic_map_patient_hierarchy.json")
+  .then(r=>r.json())
+  .then(data=>{
+     const g=build(data);
+     document.getElementById("summary-text").innerHTML =
+        g.nodes.length+" nodes<br>"+g.links.length+" links";
+     render(g);
+  });
+</script>
+</body>
+</html>

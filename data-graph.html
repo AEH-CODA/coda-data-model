@@ -357,15 +357,15 @@
         });
 
         // Variable -> Ontology class link
-        if (v.class) {
-          const classId = "class:" + v.class;
-          ensureNode(classId, "class", v.class);
-          links.push({
-            source: varName,
-            target: classId,
-            relation: "has_class",
-          });
-        }
+        //if (v.class) {
+         // const classId = "class:" + v.class;
+          //ensureNode(classId, "class", v.class);
+          //links.push({
+           // source: varName,
+            //target: classId,
+            //relation: "has_class",
+          //});
+        //}
       }
 
       const nodes = Array.from(nodesMap.values());
@@ -451,9 +451,7 @@
               "<br/><span>Concept class: " + escapeHtml(d.class_label) + "</span>"
             );
           }
-          if (d.type === "class") {
-            htmlParts.push("<br/><span>Ontology class</span>");
-          }
+        
 
           showTooltip(htmlParts.join(""), event.pageX, event.pageY);
         })

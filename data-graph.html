@@ -524,7 +524,7 @@
     }
 
     // Load JSON and build graph
-    fetch("data_semantic_map.json")
+    fetch("data_semantic_map_full.json")
       .then((res) => {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();

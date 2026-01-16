@@ -2,35 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Semantic Map</title>
+  <title>CODA Semantic Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Copy of your working CSS -->
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
     body {
       margin: 0;
-      font-family: system-ui, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #222;
     }
+
     header {
+      padding: 0.75rem 1.5rem;
       background: #0f766e;
       color: white;
-      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    #app {
-      padding: 1rem;
+
+    header h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
     }
+
+    header .subtitle {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    #sidebar {
+      width: 280px;
+      min-width: 220px;
+      max-width: 320px;
+      border-right: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0.75rem;
+      overflow-y: auto;
+    }
+
+    #content {
+      flex: 1;
+      padding: 1rem 1.25rem;
+      overflow-y: auto;
+    }
+
+    /* ... all your CSS from original index.html stays unchanged ... */
   </style>
 </head>
 
 <body>
-<header>
-  <h1>CODA Semantic Map</h1>
-</header>
+  <header>
+    <div>
+      <h1>CODA Semantic Map</h1>
+      <div class="subtitle">Ontology-driven view of the CODA ophthalmology data model</div>
+    </div>
+    <div id="header-meta" class="subtitle"></div>
+  </header>
 
-<div id="app">
-  <p>Loading semantic map…</p>
-</div>
+  <main>
+    <aside id="sidebar">
+      <div id="loading">Loading semantic map…</div>
+      <div id="error" style="display:none;"></div>
+      <div id="groups"></div>
+    </aside>
 
-<!-- Load your JS only here -->
-<script src="app.js"></script>
+    <section id="content">
+      <div class="card">
+        <h2>Welcome</h2>
+        <p class="muted">
+          Select a variable on the left to explore its definition, ontology mapping,
+          and value mappings derived from the CODA data dictionary and vocabulary.
+        </p>
+      </div>
+    </section>
+  </main>
 
+  <!-- Load the same working app.js -->
+  <script src="app.js"></script>
 </body>
 </html>

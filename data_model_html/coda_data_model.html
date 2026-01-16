@@ -1,0 +1,2316 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unnamed: 0</th>
+      <th>Unnamed: 1</th>
+      <th>Unnamed: 2</th>
+      <th>Unnamed: 3</th>
+      <th>Unnamed: 4</th>
+      <th>Unnamed: 5</th>
+      <th>Unnamed: 6</th>
+      <th>Unnamed: 7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Patient_Identification -Single Value</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>anonymous_Uid</td>
+      <td>Alphanumeric Identifier</td>
+      <td>A unique identifier for the patient, anonymized to protect privacy. This UID represents the patient's identification and is common across hospitals in the network. It is system generated and not visible to the patient or clinicians.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>anonymous_mrno</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Anonymized medical record number of the patient. This number is specific to the patient's medical record number in the specific hospital and is used for tracking visits. It is visible to the users of the system and is used by clinicians to track visits, diagnosis, history etc of the patient.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Patient Reported History</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Systemic History - List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>sh_history_code</td>
+      <td>Categorical Nominal</td>
+      <td>The name of the disease as reported by the patient and noted in the systemic history during initial examination.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_type = "sh_history_code"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>sh_duration</td>
+      <td>Temporal</td>
+      <td>The number of days, months or years which the patient has reported having the disease in the systemic history. Temporal field, but not Datetime.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>sh_prescription</td>
+      <td>Categorical Binary</td>
+      <td>Denotes whether the disease reported in the systemic history is being treated via a prescription medicine. Boolean value, 0 or 1.</td>
+      <td>Boolean</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>sh_medicine</td>
+      <td>Categorical Nominal</td>
+      <td>The name of the medicine that is being used to treat the condition reported in the Systemic History. Located from a fixed vocabulary, but can also be mentioned in the drugdesc field.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>Drug List</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>sh_non_ocular_sx</td>
+      <td>Categorical Nominal</td>
+      <td>Type of non ocular surgery done as part of systemic history</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_type = "sh_non_ocular_surgery"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>sh_non_ocular_sx_duration</td>
+      <td>Temporal</td>
+      <td>Number of days, months or years since the non ocular surgery.</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>sh_other_allergies</td>
+      <td>Categorical Nominal</td>
+      <td>Patient allergy information</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_type = "sh_other_allergies"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>sh_diabetes_control</td>
+      <td>Categorical Nominal</td>
+      <td>Method of control of diabetes.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_type = "sh_diabetes_control"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Birth History  - List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>bh_consanguinous_parents</td>
+      <td>Categorical Nominal</td>
+      <td>Indicates whether the patient has consanguinous parents. If the value is non-null, indicates that there is consanguinity, and the value indicates the level of it. Note: Birth history is generally noted only for minor patients.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "bh_consanguinous_parents"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>bh_gestation_period</td>
+      <td>Temporal</td>
+      <td>Gestation period at birth of the patient, indicates if it was a premature birth. Format #weeks.</td>
+      <td>Integer</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>bh_mode_of_delivery</td>
+      <td>Categorical Nominal</td>
+      <td>Mode of delivery, whether C-section or natural birth of the patient.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "bh_mode_of_delivery"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>bh_birthweight</td>
+      <td>Numerical Continuous</td>
+      <td>Weight at birth noted as per the Birth History, of the patient. Format #lbs</td>
+      <td>Decimal(3,2)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Ocular History  - List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>oh_procedure_type</td>
+      <td>Categorical Nominal</td>
+      <td>Procedure or surgery or medication taken in the past.</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_type = "procedure_type"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>oh_procedure_name</td>
+      <td>Categorical Nominal</td>
+      <td>Name of past procedure, surgery, medication</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_type = "procedure_name"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>oh_procedure_date</td>
+      <td>Datetime</td>
+      <td>Date of past procedure, surgery or medication</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>oh_procedure_laterality</td>
+      <td>Categorical Nominal</td>
+      <td>Eye Laterality related to the procedure.</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_type = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Social History  - List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>sch_consanginous_parents</td>
+      <td>Categorical Nominal</td>
+      <td>Indicates whether the patient has consanguinous parents. If the value is non-null, indicates that there is consanguinity, and the value indicates the grade.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "sch_consanginous_parents"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>sch_marital_status</td>
+      <td>Categorical Nominal</td>
+      <td>Indicates the marital status of the patient. Values can be single, married, unreported.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "sch_marital_status"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>sch_smoking</td>
+      <td>Categorical Nominal</td>
+      <td>Indicates the smoking habit of the patient. Its a temporal value. A null value indicates non smoker, and a non null indicates level of smoking: occasional, heavy or chain.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "sch_smoking"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>sch_alcohol</td>
+      <td>Categorical Nominal</td>
+      <td>Indicates the alcohol intake of the patient. A null value indicates no alcohol consumption, a non null value indicates level of consumption.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "sch_alcohol"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Visit</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Visit Details - Single Value</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>peid</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Unique identifier for patient encounters or visits. A PE is a patient event, and it means a visit to the hospital, which can be a fresh visit, a routine followup or a visit for a procedure.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>pedate</td>
+      <td>Datetime</td>
+      <td>The date of the patient encounter or visit.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>purpose_of_visit</td>
+      <td>Categorical Nominal</td>
+      <td>Purpose of Visit</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "purpose_of_visit"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Complaint-List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>complaint_name</td>
+      <td>Categorical Nominal</td>
+      <td>A coded name for the patient complaint. The complaint is a set of vocabulary fields that are filled in the patient record by the initial examiner.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "complaint_name"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>laterality</td>
+      <td>Categorical Nominal</td>
+      <td>This field indicates the laterality of the eye.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>sub_complaint</td>
+      <td>Categorical Nominal</td>
+      <td>There are further information points about each complaint. Further data points about the complaint.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "sub_complaint"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>sub_complaint_value</td>
+      <td>Categorical Nominal</td>
+      <td>Each complaint_qualifier has a list of coded values. This field is filled from that list.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "sub_complaint_value"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>complaint_duration</td>
+      <td>Free Text</td>
+      <td>A temporal value suggesting how many days, years or months the patient has had this complaint.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Anterior Segment Exam (as - refers to Anterior Segment examination)-List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>as_part_name</td>
+      <td>Categorical Nominal</td>
+      <td>Part of the anterior segment this value refers to. Has fixed values in the vocabulary</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "as_part_name"</td>
+      <td>Lid</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>as_laterality</td>
+      <td>Categorical Nominal</td>
+      <td>This field indicates the laterality of the eye this exam refers to.</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>as_finding</td>
+      <td>Categorical Nominal</td>
+      <td>Name of issue found in this part. Has fixed values in the vocabulary.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "as_finding"</td>
+      <td>Bell's Phenomenon</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>as_value_1</td>
+      <td>Categorical Nominal</td>
+      <td>Further definition of the finding in terms of part, or the finding itself.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "as_value_1"</td>
+      <td>Lower Lid</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>as_value_2</td>
+      <td>Categorical Nominal</td>
+      <td>Further definition of the finding.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "as_value_2"</td>
+      <td>Fair or Size in mm</td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>as_value_3</td>
+      <td>Numerical Continuous</td>
+      <td>Numerical measure of the finding.</td>
+      <td>Double</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>Value of the size.</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Fundus Exam ( fe - refers to fundus examination ) -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>fe_part_name</td>
+      <td>Categorical Nominal</td>
+      <td>Part of the fundus this refers to. Has fixed coded values in the values list. The values are 'Media', 'Disc', 'Vessels', 'Background Retina' and 'Macula/Foveal Reflex'.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "fe_part_name"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>fe_part_laterality</td>
+      <td>Categorical Nominal</td>
+      <td>This field indicates the laterality of the eye this exam refers to.</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>fe_finding</td>
+      <td>Categorical Nominal</td>
+      <td>Name of issue found in this part. Has fixed values in the vocabulary for each one of the fundus parts.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "fe_finding"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>fe_value_1</td>
+      <td>Categorical Nominal</td>
+      <td>This is the numerical value of the finding with a fixed vocabulary for each finding. Unit values are defined in the vocabulary for each finding.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "fe_value_1"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>fe_value_2</td>
+      <td>Categorical Nominal</td>
+      <td>Measure of the finding</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "fe_value_2"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Vision Exam -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>vision_glasses</td>
+      <td>Boolean</td>
+      <td>Does patient wear glasses. Yes/No.</td>
+      <td>Boolean</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>vision_curr_glass_duration</td>
+      <td>Temporal</td>
+      <td>number of months since patient has been wearing glasses.</td>
+      <td>Double</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>vision_type</td>
+      <td>Categorical Nominal</td>
+      <td>Corrected Vision ( Visual Acuity ) / Uncorrected Vision ( Visual Acuity)</td>
+      <td>varchar(255)</td>
+      <td>General Vision Function</td>
+      <td>CV where concept_name =  "vision_type"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>vision_method_used_for_reading</td>
+      <td>Categorical Nominal</td>
+      <td>Method used for reading</td>
+      <td>varchar(255)</td>
+      <td>General Vision Function</td>
+      <td>CV where concept_name = "vision_method_used_for_reading"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>44</td>
+      <td>vision_type_of_chart</td>
+      <td>Categorical Nominal</td>
+      <td>Type of chart used to check vision ( Snellen/ Logmar)</td>
+      <td>varchar(255)</td>
+      <td>General Vision Function</td>
+      <td>CV where concept_name = "vision_chart_type"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>45</td>
+      <td>Levalue</td>
+      <td>Categorical Nominal</td>
+      <td>Left eye vision value</td>
+      <td>varchar(255)</td>
+      <td>General Vision Function</td>
+      <td>CV where concept_name = "vision_chart_value"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>46</td>
+      <td>Revalue</td>
+      <td>Categorical Nominal</td>
+      <td>Right eye vision value</td>
+      <td>varchar(255)</td>
+      <td>General Vision Function</td>
+      <td>CV where concept_name = "vision_chart_value"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Refraction Exam -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>47</td>
+      <td>RESP_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Right Eye Spherical Equivalent for distance vision, in diopters.</td>
+      <td>Decimal(3,2)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>48</td>
+      <td>RECY_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Right Eye Cylinder value for distance vision, indicating astigmatism.</td>
+      <td>Decimal(3,2)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>49</td>
+      <td>REAxis_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Right Eye Axis for distance vision, indicating the orientation of astigmatism in degrees (D)</td>
+      <td>Decimal(3,2)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>50</td>
+      <td>REVA_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Right Eye Visual Acuity for distance vision.</td>
+      <td>Decimal(3,2)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>REphva_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Right Eye Presenting Visual Acuity for distance vision.</td>
+      <td>Decimal(3,2)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>52</td>
+      <td>REBCVA_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Left Eye Best Corrected Visual Acuity for distance vision.</td>
+      <td>Decimal(3,2)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>LESP_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Left Eye Spherical Equivalent for distance vision.</td>
+      <td>Decimal(3,2)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>LECY_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Left Eye Cylinder value for distance vision, indicating astigmatism.</td>
+      <td>Decimal(3,2)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>55</td>
+      <td>LEAxis_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Left Eye Axis for distance vision, indicating the orientation of astigmatism.</td>
+      <td>Decimal(3,2)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>56</td>
+      <td>LEVA_DV</td>
+      <td>Categorical Nominal</td>
+      <td>Left Eye Visual Acuity for distance vision.</td>
+      <td>varchar(10)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>57</td>
+      <td>LEphva_DV</td>
+      <td>Categorical Nominal</td>
+      <td>Left Eye Presenting Visual Acuity for distance vision.</td>
+      <td>varchar(10)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>LEucva_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Left Eye best Corrected Visual Acuity for distance vision.</td>
+      <td>Decimal(3,2)</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>59</td>
+      <td>REMPD_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Right Eye Mean Pupil Diameter for distance vision measure in mm.</td>
+      <td>Double</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>60</td>
+      <td>LEMPD_DV</td>
+      <td>Numerical Continuous</td>
+      <td>Left Eye Mean Pupil Diameter for distance vision.</td>
+      <td>Double</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Vitals Exam -Single Value</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>61</td>
+      <td>BPCystole</td>
+      <td>Numerical Continuous</td>
+      <td>Systolic blood pressure measurement  in mm Hg at the time of examination.</td>
+      <td>Integer</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>62</td>
+      <td>BPDiastole</td>
+      <td>Numerical Continuous</td>
+      <td>Diastolic blood pressure measurement  in mm Hg at the time of examination.</td>
+      <td>Integer</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>63</td>
+      <td>BSStatus</td>
+      <td>Numerical Continuous</td>
+      <td>Blood sugar status or level at the time of examination in mg/dL</td>
+      <td>Integer</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Investigation advice -single</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>64</td>
+      <td>investigation_name</td>
+      <td>Categorical Nominal</td>
+      <td>Name of the investigation performed. Codes from a vocabulary</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "investigation_name"</td>
+      <td>IOP</td>
+    </tr>
+    <tr>
+      <td>65</td>
+      <td>investigation_laterality</td>
+      <td>Categorical Nominal</td>
+      <td>Laterality of the eye the investigation was performed on.</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>66</td>
+      <td>ocular_nonocular</td>
+      <td>Categorical Boolean</td>
+      <td>Indicates whether this is an ocular investigation or not. Examples of non ocular investigations are Blood Pressure measurement.</td>
+      <td>Boolean</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>67</td>
+      <td>investigation_date</td>
+      <td>Datetime</td>
+      <td>Date and time when the investigation was performed</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>2023-07-08 08:23:58</td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td>investigation_result_numeric</td>
+      <td>Numerical Continuous</td>
+      <td>Numeric values from the investigation</td>
+      <td>Decimal(3,2)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>69</td>
+      <td>investigation_result_unit</td>
+      <td>Categorical Nominal</td>
+      <td>Unit of the numeric value</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "investigation_result_unit"</td>
+      <td>mm/Hg</td>
+    </tr>
+    <tr>
+      <td>70</td>
+      <td>investigation_result_desc</td>
+      <td>Free Text</td>
+      <td>Textual interpretation of a result</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Special Investigation advice -single</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>71</td>
+      <td>special_investigation_name</td>
+      <td>Categorical Nominal</td>
+      <td>Name of the investigation performed. These are mostly imaging studies.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "special_investigation_name"</td>
+      <td>OCT</td>
+    </tr>
+    <tr>
+      <td>72</td>
+      <td>eye_laterality</td>
+      <td>Categorical Nominal</td>
+      <td>Eye on which special investigation is performed</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>RE</td>
+    </tr>
+    <tr>
+      <td>73</td>
+      <td>special_investigation_date</td>
+      <td>Datetime</td>
+      <td>Date and time when the investigation was performed</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>2023-07-08 08:23:58</td>
+    </tr>
+    <tr>
+      <td>74</td>
+      <td>special_investigation_id</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Scan_id ( Study id ) of the investigation performed. Typically the id of the DICOM file or image file of this investigation.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>file://aeh/research-pacs/245.dcm</td>
+    </tr>
+    <tr>
+      <td>75</td>
+      <td>special_investigation_notes</td>
+      <td>Free Text</td>
+      <td>Remarks or Notes about the results of the investigation</td>
+      <td>varchar()</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>Borderline Nasal RNFL thinning,Inferior / inferotemporal RNFL thinning;Done,Done</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Follow-up Investigation Advice - List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>76</td>
+      <td>RE_fl_investigation_method</td>
+      <td>Categorical Nominal</td>
+      <td>Method of investigation.</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td>LE_fl_investigation_method</td>
+      <td>Categorical Nominal</td>
+      <td>Method of investigation</td>
+      <td>NaN</td>
+      <td>General Vision Function</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Diagnosis -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>78</td>
+      <td>diagnosis_name</td>
+      <td>Categorical Nominal</td>
+      <td>Name of the diagnosis given to the patient</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "diagnosis"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>79</td>
+      <td>laterality</td>
+      <td>Categorical Nominal</td>
+      <td>Laterality of the diagnosis.</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>80</td>
+      <td>diagnosis_date</td>
+      <td>Datetime</td>
+      <td>Date and time of diagnosis</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Advice</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Drug Prescription -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>81</td>
+      <td>drug_name</td>
+      <td>Categorical Nominal</td>
+      <td>NaN</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "name_of_drug"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>82</td>
+      <td>drug_duration</td>
+      <td>Temporal</td>
+      <td>NaN</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>83</td>
+      <td>form_type</td>
+      <td>Categorical Nominal</td>
+      <td>NaN</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "form_type"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>84</td>
+      <td>dosage</td>
+      <td>Free Text</td>
+      <td>NaN</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>85</td>
+      <td>advice_date</td>
+      <td>Datetime</td>
+      <td>Date of advice</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Refractive Correction -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>86</td>
+      <td>refractive_correction_type</td>
+      <td>Categorical Nominal</td>
+      <td>Refractive Correction Advised. Example (Same Gp, Lasik Counselling, Contact Lens)</td>
+      <td>varchar(255)</td>
+      <td>NaN</td>
+      <td>CV where concept_name = "Advice_RC"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>87</td>
+      <td>laterality</td>
+      <td>Categorical Nominal</td>
+      <td>NaN</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>88</td>
+      <td>advice_date</td>
+      <td>Datetime</td>
+      <td>Date of advice</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>GP Advice -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>89</td>
+      <td>glass_precription_value</td>
+      <td>Free Text</td>
+      <td>Glass prescription advice</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>90</td>
+      <td>advice_date</td>
+      <td>Datetime</td>
+      <td>Date of advice</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Surgery Advice - List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>91</td>
+      <td>primary_procedure</td>
+      <td>Categorical Nominal</td>
+      <td>Primary surgical procedure advised</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "primary_procedure"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>92</td>
+      <td>secondary_procedure</td>
+      <td>Categorical Nominal</td>
+      <td>Secondary surgical procedure advised</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "secondary_procedure"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>93</td>
+      <td>laterality</td>
+      <td>Categorical Nominal</td>
+      <td>Surgical procedure Laterality</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>94</td>
+      <td>implant</td>
+      <td>Categorical Nominal</td>
+      <td>Implant advise</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "implant"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>95</td>
+      <td>adjunct</td>
+      <td>Categorical Nominal</td>
+      <td>adjunct advise</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "adjunct"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>96</td>
+      <td>anesthesia</td>
+      <td>Boolean</td>
+      <td>Whether to be done under anesthesia or not</td>
+      <td>Boolean</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>97</td>
+      <td>advice_date</td>
+      <td>Datetime</td>
+      <td>Date of advice</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>98</td>
+      <td>surgery_completed_date</td>
+      <td>Datetime</td>
+      <td>Date of completion of surgery</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>99</td>
+      <td>surgery_done_at</td>
+      <td>Categorical Nominal</td>
+      <td>Hospital where surgery was done.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "hospital_code"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Procedure Advice -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>procedure_type</td>
+      <td>Categorical Nominal</td>
+      <td>Procedure type ( eg Injection, laser etc ) advised</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "procedure_type"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>procedure_name</td>
+      <td>Categorical Nominal</td>
+      <td>Exact name of the procedure advised</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "procedure_name"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>laterality</td>
+      <td>Categorical Nominal</td>
+      <td>Procedure laterality</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>number_of_sittings_advice</td>
+      <td>Numerical</td>
+      <td>Number of sittings required.</td>
+      <td>Integer</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>advice_date</td>
+      <td>Datetime</td>
+      <td>Date of the advice</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>105</td>
+      <td>completion_date</td>
+      <td>Datetime</td>
+      <td>Date of completion of procedure.</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>106</td>
+      <td>sitting_num_completed</td>
+      <td>Numerical</td>
+      <td>How many sittings are done.</td>
+      <td>Integer</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>procedure_done_at</td>
+      <td>Categorical Nominal</td>
+      <td>Hospital where procedure was done.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "hospital_code"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Treatment Advice -List</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>108</td>
+      <td>treatment_type</td>
+      <td>Categorical Nominal</td>
+      <td>Treatment type. ( eg : Exercise, Patching, Lacriminal Sac Massage etc)</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "treatment"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>109</td>
+      <td>laterality</td>
+      <td>Categorical Nominal</td>
+      <td>Treatment laterality</td>
+      <td>varchar(10)</td>
+      <td>General</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>110</td>
+      <td>advice_date</td>
+      <td>Datetime</td>
+      <td>Date of the advice</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>111</td>
+      <td>treatment_duration</td>
+      <td>Temporal</td>
+      <td>Duration of treatment in days, months etc.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>112</td>
+      <td>treatment_completion_date</td>
+      <td>Datetime</td>
+      <td>Date of completion of treatment</td>
+      <td>Datetime</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>113</td>
+      <td>treatment_done_at</td>
+      <td>Categorical Nominal</td>
+      <td>Hospital where treatment was done.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>CV where concept_name = "hospital_code"</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>OCT Study</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>114</td>
+      <td>scan_id ( StudyInstanceUid)</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Typically the Study Instance Uid of the DICOM field</td>
+      <td>varchar(255)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>OCT2025_00123</td>
+    </tr>
+    <tr>
+      <td>115</td>
+      <td>anonymized patient id</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Anonymized Patient Id associated with the image.</td>
+      <td>varchar(255)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>P12345</td>
+    </tr>
+    <tr>
+      <td>116</td>
+      <td>visit_id</td>
+      <td>NaN</td>
+      <td>Unique identifier for patient encounters or visits. A PE is a patient event, and it means a visit to the hospital, which can be a fresh visit, a routine followup or a visit for a procedure.</td>
+      <td>varchar(255)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>V12345</td>
+    </tr>
+    <tr>
+      <td>117</td>
+      <td>eye_laterality</td>
+      <td>Categorical Nominal</td>
+      <td>This field indicates the laterality of the eye this exam refers to.</td>
+      <td>varchar(10)</td>
+      <td>Retina</td>
+      <td>CV where concept_name = "laterality"</td>
+      <td>Right / Left</td>
+    </tr>
+    <tr>
+      <td>118</td>
+      <td>scan_date</td>
+      <td>Datetime</td>
+      <td>The date of the study</td>
+      <td>Datetime</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>2025-10-10 00:00:00</td>
+    </tr>
+    <tr>
+      <td>119</td>
+      <td>device_type</td>
+      <td>Categorical Nominal</td>
+      <td>The type of OCT device. This will typically be the Manufacturer + Model</td>
+      <td>varchar(255)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>Heidelberg Spectralis</td>
+    </tr>
+    <tr>
+      <td>120</td>
+      <td>scan_protocol</td>
+      <td>Categorical Nominal</td>
+      <td>Scan type (macula cube, raster)</td>
+      <td>varchar(255)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>Macula Cube 512×128</td>
+    </tr>
+    <tr>
+      <td>121</td>
+      <td>signal_strength</td>
+      <td>Numerical Continuous</td>
+      <td>Image quality metric</td>
+      <td>Number</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>OCT Image</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>122</td>
+      <td>image_id</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Typically, the Image Instance Uid of the DICOM image. Each study can have many images.</td>
+      <td>varchar(255)</td>
+      <td>General</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>123</td>
+      <td>number_of_frames</td>
+      <td>Numerical Continuous</td>
+      <td>Number of frames captured in this image. Each image can have many frames.</td>
+      <td>Number</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>OCT Frame</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>124</td>
+      <td>frame_id</td>
+      <td>Alphanumeric</td>
+      <td>Identification of the slice. Corresponds to the id of the actual image slice.</td>
+      <td>Numeric</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>125</td>
+      <td>Pixel Spacing</td>
+      <td>Numerical Array</td>
+      <td>Dimensions of each pixel in mm/µm</td>
+      <td>LIST[2]</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>[0.1mm, 0.2mm]</td>
+    </tr>
+    <tr>
+      <td>126</td>
+      <td>Inter Slice Spacing</td>
+      <td>Numerical Continuous</td>
+      <td>Distance between slices of OCT</td>
+      <td>Numeric (float, 1 mm)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>0.5mm</td>
+    </tr>
+    <tr>
+      <td>127</td>
+      <td>Image Position (Patient)</td>
+      <td>Numerical Array</td>
+      <td>Origin Location (top-left corner coordinates) of B-Scan slice in 3D space</td>
+      <td>LIST[3]</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>[0,0,0]</td>
+    </tr>
+    <tr>
+      <td>128</td>
+      <td>slice_thickness</td>
+      <td>Numerical Continuous</td>
+      <td>Thickness of each slice</td>
+      <td>Numeric (float, 1 mm)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>0.125mm</td>
+    </tr>
+    <tr>
+      <td>129</td>
+      <td>image_orientation</td>
+      <td>Numerical Array</td>
+      <td>Row and Column Direction Cosines</td>
+      <td>LIST[6]</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>[1,0,0,0.1,0,0]</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Keratoconus Ground Truth</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Field_id</td>
+      <td>Field_Name</td>
+      <td>Field_Type</td>
+      <td>Field_Description</td>
+      <td>Data_Type(Len)</td>
+      <td>Field_classification</td>
+      <td>Value_Lookup</td>
+      <td>Example</td>
+    </tr>
+    <tr>
+      <td>130</td>
+      <td>scan_id</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Typically the Study Instance Uid of the DICOM field. Here, the locator for the Pentacam image files.</td>
+      <td>varchar(255)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>131</td>
+      <td>visit_id</td>
+      <td>Alphanumeric Identifier</td>
+      <td>Unique identifier for patient encounters or visits. A PE is a patient event, and it means a visit to the hospital, which can be a fresh visit, a routine followup or a visit for a procedure.</td>
+      <td>varchar(255)</td>
+      <td>Retina</td>
+      <td>NaN</td>
+      <td>V12345</td>
+    </tr>
+    <tr>
+      <td>132</td>
+      <td>K1 (Flat Keratometry)</td>
+      <td>Numerical Continuous</td>
+      <td>Radius/curvature of the flattest corneal meridian (anterior surface)</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>133</td>
+      <td>K2 (Steep Keratometry)</td>
+      <td>Numerical Continuous</td>
+      <td>Radius/curvature of the steepest corneal meridian (anterior surface)</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>134</td>
+      <td>Km (Mean Keratometry)</td>
+      <td>Numerical Continuous</td>
+      <td>Average of K1 and K2</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>135</td>
+      <td>Posterior K1/K2/Km</td>
+      <td>Numerical Continuous</td>
+      <td>Same as above but for posterior corneal surface</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>136</td>
+      <td>Central Corneal Thickness (CCT)</td>
+      <td>Numerical Continuous</td>
+      <td>Thickness at corneal apex (center)</td>
+      <td>Numeric (int)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>137</td>
+      <td>Thinnest Corneal Thickness</td>
+      <td>Numerical Continuous</td>
+      <td>Minimum corneal thickness detected across cornea</td>
+      <td>Numeric (int)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>138</td>
+      <td>Pachymetry Map</td>
+      <td>Array/Grid</td>
+      <td>Spatial corneal thickness map</td>
+      <td>Array/Grid</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>139</td>
+      <td>Anterior Chamber Depth (ACD)</td>
+      <td>Numerical Continuous</td>
+      <td>Distance from corneal endothelium to lens</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>140</td>
+      <td>Anterior Chamber Volume (ACV)</td>
+      <td>Numerical Continuous</td>
+      <td>Total fluid-filled space volume between cornea &amp; lens</td>
+      <td>Numeric (float, 1dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>141</td>
+      <td>Anterior Chamber Angle (ACA)</td>
+      <td>Numerical Continuous</td>
+      <td>Angle between cornea &amp; iris</td>
+      <td>Numeric (float, 1dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>142</td>
+      <td>Anterior Elevation Map</td>
+      <td>Array/Grid</td>
+      <td>Height difference of anterior cornea vs. best-fit sphere</td>
+      <td>Array/Grid</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>143</td>
+      <td>Posterior Elevation Map</td>
+      <td>Array/Grid</td>
+      <td>Height difference of posterior cornea vs. best-fit sphere</td>
+      <td>Array/Grid</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>144</td>
+      <td>Corneal Volume (CV)</td>
+      <td>Numerical Continuous</td>
+      <td>Total corneal volume in defined diameter (e.g., 10 mm)</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>145</td>
+      <td>Belin/Ambrosio Deviation (BAD-D)</td>
+      <td>Numerical Continuous</td>
+      <td>Composite ectasia index (combines curvature, pachymetry, elevation)</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>146</td>
+      <td>Lens Densitometry</td>
+      <td>Numerical Continuous</td>
+      <td>Optical density within defined regions of crystalline lens</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>147</td>
+      <td>ISV (Index of Surface Variance)</td>
+      <td>Numerical Continuous</td>
+      <td>Standard deviation of individual corneal curvature values</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>148</td>
+      <td>IVA (Index of Vertical Asymmetry)</td>
+      <td>Numerical Continuous</td>
+      <td>Compares superior vs inferior corneal curvature</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>149</td>
+      <td>KI (Keratoconus Index)</td>
+      <td>Numerical Continuous</td>
+      <td>Ratio between steepest radius and average curvature</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>150</td>
+      <td>CKI (Central Keratoconus Index)</td>
+      <td>Numerical Continuous</td>
+      <td>Ratio of central vs paracentral corneal curvature</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>151</td>
+      <td>Q-value (Asphericity)</td>
+      <td>Numerical Continuous</td>
+      <td>Describes whether cornea is prolate or oblate</td>
+      <td>Numeric (float, 2dp)</td>
+      <td>Cornea</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
